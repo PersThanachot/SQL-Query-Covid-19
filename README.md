@@ -1,1 +1,1 @@
-# SQL-Query-Covid-19
+# SQL-Server-Query-Covid-19
