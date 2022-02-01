@@ -52,6 +52,7 @@ GROUP BY
 ORDER BY HightestIfectionCount DESC
 
 -- Showing Countries with Hightest Deaths Count per Population
+
 SELECT 
 	Location,
 	max(cast(total_deaths as int)) AS max_deaths,
@@ -62,3 +63,23 @@ GROUP BY
 	Location,
 	population
 ORDER BY max_deaths DESC
+
+--LET'S BREAK THINGS DOWN BY CONTINENT
+
+SELECT 
+	continent,
+	max(cast(total_deaths as int)) AS TotalDeaths
+FROM PortfolioProject.dbo.CovidDeaths_28_1_2022
+WHERE continent IS NOT NULL
+GROUP BY continent
+ORDER BY TotalDeaths DESC
+
+--showing continent with the highest deaths count per population
+
+SELECT 
+	continent,
+	(max(cast(total_deaths as int))/sum(population)) AS HightestDeathsCount
+FROM PortfolioProject.dbo.CovidDeaths_28_1_2022
+WHERE continent IS NOT NULL
+GROUP BY continent
+ORDER BY HightestDeathsCount ASC
